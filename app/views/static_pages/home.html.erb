@@ -3,11 +3,14 @@
 <html>
   <head>
     <title><%= yield(:title) %> | OPTIMIZR</title>
-  </head>
-  <body>
-    <h1>Get Ready for Awesome</h1>
-    <p>
-      You ready to optimize your credit card spend?
-    </p>
-  </body>
-</html>
+
+
+
+<div class="center jumbotron">
+  <h1>Get Ready for Awesome</h1>
+  <p>
+    You ready to optimize your credit card spend?
+  </p>
+
+  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
+</div>
