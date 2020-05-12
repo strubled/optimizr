@@ -1,2 +1,13 @@
-<h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<% provide(:title, "Help") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | OPTIMIZR</title>
+  </head>
+  <body>
+    <h1>Get Ready for Awesome</h1>
+    <p>
+      You won't need help.  
+    </p>
+  </body>
+</html>

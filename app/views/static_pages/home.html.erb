@@ -1,2 +1,13 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<% provide(:title, "Home") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | OPTIMIZR</title>
+  </head>
+  <body>
+    <h1>Get Ready for Awesome</h1>
+    <p>
+      You ready to optimize your credit card spend?
+    </p>
+  </body>
+</html>
