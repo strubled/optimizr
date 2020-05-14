@@ -1,0 +1,40 @@
+<div class="center jumbotron">
+  <h3>Enter Spend</h3>
+
+  <p> a form will go here soon </p>
+
+  <h3>Card Value</h3>
+
+  <p> eventually the card values will change based on the form, but for now just
+    returning the cards in the database </p>
+
+  <%# app/views/employees/index.html.erb %>
+
+      <div class='container-fluid'>
+        <p id="notice"><%= notice %></p>
+        <div class='row py-3 px-3'>
+          <div class='col-12 col-sm-8'>
+            <h3 class=''>Cards</h3>
+            <table id='employee-table' class="table table-hover">
+              <thead  class="thead-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Card Type</th>
+                  <th>Annual Fee</th>
+                  <th>CashBack</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @cards.each do |card| %>
+                  <tr>
+                    <td><%= card.name %></td>
+                    <td><%= card.card_type %></td>
+                    <td><%= card.annual_fee %></td>
+                    <td><%= card.other_cash_rate %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+</div>
