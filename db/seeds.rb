@@ -8,6 +8,7 @@
 
 Card.create(name:'Citi Double Cash Card', annual_fee: 0.00, card_type:'cashback', other_cash_rate:2.00)
 Card.create(name:'Capital One Quicksilver', annual_fee: 0.00, card_type:'cashback', other_cash_rate:1.50)
+Spent.create(spend: 100)
 
 =begin
 t.string :name

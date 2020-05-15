@@ -23,6 +23,9 @@ textarea {
   margin-bottom: 10px;
 }
 
+body, html {
+  margin: 0;
+}
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -128,6 +131,7 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 /* forms */
+
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
