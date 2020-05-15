@@ -1,0 +1,55 @@
+<% provide(:title, "Recommendations") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | OPTIMIZR</title>
+  </head>
+  <body>
+
+<div class="center jumbotron">
+  <h3>Enter Spend</h3>
+
+  <%= form_with scope: :spend, local: true do |form| %>
+    <p>
+      <%= form.number_field :spend %>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+
+</div>
+
+<div class="center jumbotron">
+  <h3>Card Value</h3>
+
+  <p> Values based on <%= @spend %> of spend </p>
+
+
+            <table id='cards-table' class="table table-hover">
+              <thead  class="thead-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Card Type</th>
+                  <th>Annual Fee</th>
+                  <th>CashBack</th>
+                  <th>Total Value</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @cards.each do |card| %>
+                  <tr>
+                    <td><%= card.name %></td>
+                    <td><%= card.card_type %></td>
+                    <td><%= card.annual_fee %></td>
+                    <td><%= card.other_cash_rate %></td>
+                    <td><%= card.other_cash_rate * @spend / 100 %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+</div>
+</div>

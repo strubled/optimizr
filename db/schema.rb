@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_005525) do
+ActiveRecord::Schema.define(version: 2020_05_14_180737) do
 
   create_table "cards", force: :cascade do |t|
     t.string "name"
@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 2020_05_14_005525) do
     t.float "other_cash_rate"
     t.integer "other_cash_limit"
     t.float "other_cash_multi_limit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "spents", force: :cascade do |t|
+    t.float "spend"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

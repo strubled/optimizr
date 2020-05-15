@@ -5,6 +5,8 @@ class StaticPagesController < ApplicationController
     @all_cards = Card.all
   end
 
+  
+
   def help
   end
 end
