@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   get 'cards/new'
   get 'sessions/new'
   get 'users/new'
+  get 'cards/edit'
   root 'static_pages#home'
   get  '/help',    to: 'static_pages#help'
-  get  '/cards',    to: 'cards#new'
+  get  '/cards',    to: 'cards#show'
+  get '/addcard',       to: 'cards#new'
   get  '/analysis',    to: 'cards#analysis'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
@@ -18,4 +20,5 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users
   resources :recommendations
+  resources :cards
 end

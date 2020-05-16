@@ -1,27 +1,8 @@
-<% provide(:title, "Cards") %>
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= yield(:title) %> | OPTIMIZR</title>
-  </head>
-  <body>
+<% provide(:title, "All Cards") %>
 
 <div class="center jumbotron">
-  <h3>Enter Spend</h3>
-
-<%= form_for(@analysis) do |f| %>
-<%= f.label 'name' %>
-<% end %>
-
-</div>
-
-<div class="center jumbotron">
-  <h3>Card Value</h3>
-
-  <p> eventually the card values will change based on the form, but for now just
-    returning the cards in the database </p>
-
-
+  <h3>All Cards</h3>
+<p> <%= link_to "Add New Card", addcard_path, type: "button", class: "btn btn-primary btn-responsive-edit" %> </p>
             <table id='cards-table' class="table table-hover">
               <thead  class="thead-light">
                 <tr>
@@ -29,7 +10,8 @@
                   <th>Card Type</th>
                   <th>Annual Fee</th>
                   <th>CashBack</th>
-                  <th>Total Value</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
 
@@ -40,10 +22,19 @@
                     <td><%= card.card_type %></td>
                     <td><%= card.annual_fee %></td>
                     <td><%= card.other_cash_rate %></td>
-                    <td><%= card.other_cash_rate * 20000 /100 %></td>
+                    <td><%= link_to  edit_card_path(card.id), type: "button", class: "btn btn-primary btn-responsive-edit" do %>
+            <i class="glyphicon glyphicon-cog"></i>
+        <% end %>
+                    <td>
+
+
+       <%= button_to  card, method: :delete,  type: "button", class: "btn btn-danger btn-responsive" do %>
+     <i class="glyphicon glyphicon-remove-circle"></i>
+ <% end %>
                   </tr>
                 <% end %>
               </tbody>
             </table>
-</div>
+
+
 </div>
