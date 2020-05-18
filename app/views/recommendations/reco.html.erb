@@ -11,10 +11,27 @@
       <%= form.label :grocery, 'Grocery' %>:
       <%= form.number_field :grocery %>
     </div>
-  	<div class="col-lg-6">
-   <%= form.label :total, 'Total' %>:
-   <%= form.number_field :total %>
+    <div class="col-lg-6">
+      <%= form.label :gas, 'Gas' %>:
+      <%= form.number_field :gas %>
+    </div>
+    <div class="col-lg-6">
+      <%= form.label :dining, 'Dining' %>:
+      <%= form.number_field :dining %>
+    </div>
+    <div class="col-lg-6">
+      <%= form.label :hotel, 'Hotel' %>:
+      <%= form.number_field :hotel %>
+    </div>
+    <div class="col-lg-6">
+   <%= form.label :airfare, 'Airfare' %>:
+   <%= form.number_field :airfare %>
  </div>
+ <div class="col-lg-6">
+ <%= form.label :other, 'Other' %>:
+ <%= form.number_field :other %>
+</div>
+
      <div class="col-lg-12">
   	<%= form.submit "Run It", class: "btn btn-primary" %>
   	</div>
@@ -28,18 +45,25 @@
 <div class="center jumbotron">
   <h3>Card Value</h3>
 
-  <p> Values based on <%= @grocery %> grocery spend and <%= @total %> of total spend </p>
+  <p> Values based on <%= number_to_currency(@grocery) %> grocery, <%= number_to_currency(@gas) %> gas,
+    <%= number_to_currency(@dining) %> dining,
+    <%= number_to_currency(@hotel) %> hotel,
+    <%= number_to_currency(@airfare) %> airfare, and
+    <%= number_to_currency(@other) %> other spend, for a total of
+  <%= number_to_currency(@grocery + @gas + @dining + @hotel + @airfare + @other) %> </p>
 
 
             <table id='cards-table' class="table table-hover">
               <thead  class="thead-light">
                 <tr>
                   <th>Name</th>
-                  <th>Card Type</th>
-                  <th>Annual Fee</th>
-                  <th>CashBack</th>
-                  <th>Grocery Value</th>
-                  <th>Total Value</th>
+                  <th>Grocery</th>
+                  <th>Gas</th>
+                  <th>Dining</th>
+                  <th>Hotel</th>
+                  <th>Airfare</th>
+                  <th>Other</th>
+                  <th>Total</th>
                 </tr>
               </thead>
 
@@ -47,11 +71,37 @@
                 <% @cards.each do |card| %>
                   <tr>
                     <td><%= card.name %></td>
-                    <td><%= card.card_type %></td>
-                    <td><%= card.annual_fee %></td>
-                    <td><%= card.other_cash_rate %></td>
-                    <td><%= card.other_cash_rate * @grocery / 100 %></td>
-                    <td><%= card.other_cash_rate * @total / 100 %></td>
+                    <td><%= number_to_currency((card.grocery_cash_rate * @grocery / 100) +
+                                               (card.grocery_points_multi * @grocery / 100)) %></td>
+
+                    <td><%= number_to_currency((card.gas_cash_rate * @gas / 100) +
+                                               (card.gas_points_multi * @gas / 100)) %></td>
+
+                    <td><%= number_to_currency((card.dining_cash_rate * @dining / 100) +
+                                               (card.dining_point_multi * @dining / 100)) %></td>
+
+                    <td><%= number_to_currency((card.hotel_cash_rate * @hotel / 100) +
+                                               (card.hotel_points_multi * @hotel /100)) %></td>
+
+                    <td><%= number_to_currency((card.airfare_cash_rate * @airfare / 100) +
+                                               (card.airfare_points_multi * @airfare / 100)) %></td>
+
+                    <td><%= number_to_currency((card.other_cash_rate * @other / 100) +
+                                               (card.other_points_multi * @other / 100))%></td>
+
+
+                    <td><%= number_to_currency((card.grocery_cash_rate * @grocery / 100) +
+                            (card.gas_cash_rate * @gas / 100) +
+                            (card.dining_cash_rate * @dining / 100) +
+                            (card.hotel_cash_rate * @hotel / 100) +
+                            (card.airfare_cash_rate * @airfare / 100) +
+                            (card.other_cash_rate * @other / 100) +
+                            (card.grocery_points_multi * @grocery / 100) +
+                            (card.gas_points_multi * @gas / 100) +
+                            (card.dining_point_multi * @dining / 100) +
+                            (card.hotel_points_multi * @hotel / 100) +
+                            (card.airfare_points_multi * @airfare / 100) +
+                            (card.other_points_multi * @other / 100))%></td>
                   </tr>
                 <% end %>
               </tbody>

@@ -20,6 +20,80 @@
 <%= f.text_field :annual_fee, class: 'form-control' %>
 <%= f.label :gas_points_multi %>
 <%= f.text_field :gas_points_multi, class: 'form-control' %>
+<%= f.label :gas_points_limit %>
+<%= f.text_field :gas_points_limit, class: 'form-control' %>
+<%= f.label :gas_points_multi_limit %>
+<%= f.text_field :gas_points_multi_limit, class: 'form-control' %>
+<%= f.label :grocery_points_multi %>
+<%= f.text_field :grocery_points_multi, class: 'form-control' %>
+<%= f.label :grocery_points_limit %>
+<%= f.text_field :grocery_points_limit, class: 'form-control' %>
+<%= f.label :grocery_points_multi_limit %>
+<%= f.text_field :grocery_points_multi_limit, class: 'form-control' %>
+<%= f.label :dining_point_multi %>
+<%= f.text_field :dining_point_multi, class: 'form-control' %>
+<%= f.label :dining_points_limit %>
+<%= f.text_field :dining_points_limit, class: 'form-control' %>
+<%= f.label :dining_points_multi_limit %>
+<%= f.text_field :dining_points_multi_limit, class: 'form-control' %>
+<%= f.label :hotel_points_multi %>
+<%= f.text_field :hotel_points_multi, class: 'form-control' %>
+<%= f.label :hotel_points_limit %>
+<%= f.text_field :hotel_points_limit, class: 'form-control' %>
+<%= f.label :hotel_points_multi_limit %>
+<%= f.text_field :hotel_points_multi_limit, class: 'form-control' %>
+<%= f.label :airfare_points_multi %>
+<%= f.text_field :airfare_points_multi, class: 'form-control' %>
+<%= f.label :airfare_points_limit %>
+<%= f.text_field :airfare_points_limit, class: 'form-control' %>
+<%= f.label :airfare_points_multi_limit %>
+<%= f.text_field :airfare_points_multi_limit, class: 'form-control' %>
+<%= f.label :other_points_multi %>
+<%= f.text_field :other_points_multi, class: 'form-control' %>
+<%= f.label :other_points_limit %>
+<%= f.text_field :other_points_limit, class: 'form-control' %>
+<%= f.label :other_points_multi_limit %>
+<%= f.text_field :other_points_multi_limit, class: 'form-control' %>
+<%= f.label :point_value %>
+<%= f.text_field :point_value, class: 'form-control' %>
+<%= f.label :sign_up_bonus_cash %>
+<%= f.text_field :sign_up_bonus_cash, class: 'form-control' %>
+<%= f.label :gas_cash_rate %>
+<%= f.text_field :gas_cash_rate, class: 'form-control' %>
+<%= f.label :gas_cash_limit %>
+<%= f.text_field :gas_cash_limit, class: 'form-control' %>
+<%= f.label :gas_cash_multi_limit %>
+<%= f.text_field :gas_cash_multi_limit, class: 'form-control' %>
+<%= f.label :grocery_cash_rate %>
+<%= f.text_field :grocery_cash_rate, class: 'form-control' %>
+<%= f.label :grocery_cash_limit %>
+<%= f.text_field :grocery_cash_limit, class: 'form-control' %>
+<%= f.label :grocery_cash_multi_limit %>
+<%= f.text_field :grocery_cash_multi_limit, class: 'form-control' %>
+<%= f.label :dining_cash_rate %>
+<%= f.text_field :dining_cash_rate, class: 'form-control' %>
+<%= f.label :dining_cash_limit %>
+<%= f.text_field :dining_cash_limit, class: 'form-control' %>
+<%= f.label :dining_cash_multi_limit %>
+<%= f.text_field :dining_cash_multi_limit, class: 'form-control' %>
+<%= f.label :hotel_cash_rate %>
+<%= f.text_field :hotel_cash_rate, class: 'form-control' %>
+<%= f.label :hotel_cash_limit %>
+<%= f.text_field :hotel_cash_limit, class: 'form-control' %>
+<%= f.label :hotel_cash_multi_limit %>
+<%= f.text_field :hotel_cash_multi_limit, class: 'form-control' %>
+<%= f.label :airfare_cash_rate %>
+<%= f.text_field :airfare_cash_rate, class: 'form-control' %>
+<%= f.label :airfare_cash_limit %>
+<%= f.text_field :airfare_cash_limit, class: 'form-control' %>
+<%= f.label :airfare_cash_multi_limit %>
+<%= f.text_field :airfare_cash_multi_limit, class: 'form-control' %>
+<%= f.label :other_cash_rate %>
+<%= f.text_field :other_cash_rate, class: 'form-control' %>
+<%= f.label :other_cash_limit %>
+<%= f.text_field :other_cash_limit, class: 'form-control' %>
+<%= f.label :other_cash_multi_limit %>
+<%= f.text_field :other_cash_multi_limit, class: 'form-control' %>
   <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>
 </div>
@@ -27,41 +101,8 @@
 
 
 <!--t.string :name
-t.string :description
-t.string :card_type
-t.string :logo_url
-t.integer :signup_bonus_spend_required
-t.integer :signup_bonus_points_earned
-t.float :annual_fee
-t.integer :gas_points_multi
-t.integer :gas_points_limit
-t.integer :gas_points_multi_limit
-t.integer :grocery_points_multi
-t.integer :grocery_points_limit
-t.integer :grocery_points_multi_limit
-t.integer :dining_point_multi
-t.integer :dining_points_limit
-t.integer :dining_points_multi_limit
-t.integer :hotel_points_multi
-t.integer :hotel_points_limit
-t.integer :hotel_points_multi_limit
-t.integer :airfare_points_multi
-t.integer :airfare_points_limit
-t.integer :airfare_points_multi_limit
-t.integer :other_points_multi
-t.integer :other_points_limit
-t.integer :other_points_multi_limit
-t.float :point_value
 t.integer :sign_up_bonus_cash
-t.float :gas_cash_rate
-t.integer :gas_cash_limit
-t.float :gas_cash_multi_limit
-t.float :grocery_cash_rate
-t.integer :grocery_cash_limit
-t.float :grocery_cash_multi_limit
-t.float :dining_cash_rate
-t.integer :dining_cash_limit
-t.float :dining_cash_multi_limit
+
 t.float :hotel_cash_rate
 t.integer :hotel_cash_limit
 t.float :hotel_cash_multi_limit
