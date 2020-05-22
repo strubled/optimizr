@@ -49,7 +49,7 @@
 <p>The Best Grocery: <%= @topgrocery %> </p>
 <p>The Best Gas: <%= @topgas %> </p>
 </div>
-
+<% if Transaction.any? %>
   <h3>Value for All Cards</h3>
 
   <table class="table table-hover">
@@ -69,6 +69,7 @@
     </thead>
 
     <tbody>
+
     <% @cards.each do |card| %>
     <tr>
       <td><%= card.name %></td>
@@ -78,7 +79,7 @@
                                       (card.signup_bonus_points_earned * card.point_value)) %></td>
       <% else %>
       <td><%= number_to_currency(card.sign_up_bonus_cash) %></td>
-                              <% end %>
+      <% end %>
       <td><%= number_to_currency((card.grocery_cash_rate * @grocery / 100) +
                                 (card.grocery_points_multi * @grocery / 100)) %></td>
       <td><%= number_to_currency((card.gas_cash_rate * @gas / 100) +
@@ -128,3 +129,4 @@
                           <% end %>
                 </tbody>
               </table>
+              <% end %>
