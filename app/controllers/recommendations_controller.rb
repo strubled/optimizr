@@ -8,7 +8,7 @@ class RecommendationsController < ApplicationController
       #  Transaction.last.airline, Transaction.last.other, Transaction.last.hotel]
       #@categoriesEntered = Hash.new(0)
       #@category.each { |v| @categoriesEntered.store(v, @category[v]+1)}
-      if Transaction.last.attributes.values == nil
+      if @trans == nil 
         @countnil = 0
       else
       @countnil = Transaction.last.attributes.values.select(&:nil?).count - 2
