@@ -1,0 +1,5 @@
+class TransactionCategoryTotal < ApplicationRecord
+
+
+
+end
