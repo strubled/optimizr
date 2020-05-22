@@ -13,6 +13,11 @@ class RecommendationsController < ApplicationController
         @total = 0
         @topgrocery = "None Yet"
         @topgas = "None Yet"
+        @topdining = "None Yet"
+        @topairfare = "None Yet"
+        @tophotel = "None Yet"
+        @topother = "None Yet"
+        @topforall = "None Yet"
       else
         @trans = Transaction.all
         @countnil = Transaction.last.attributes.values.select(&:nil?).count - 2
@@ -26,6 +31,10 @@ class RecommendationsController < ApplicationController
 
         @groceryhash = Hash.new
         @gashash = Hash.new
+        @dininghash = Hash.new
+        @hotelhash = Hash.new
+        @airfarehash = Hash.new
+        @otherhash = Hash.new
         @cards.each do |card|
           @groceryhash[card.name] = (card.grocery_cash_rate * @grocery / 100) +
                                   (card.grocery_points_multi * @grocery / 100) -
@@ -34,10 +43,27 @@ class RecommendationsController < ApplicationController
           @gashash[card.name] = (card.gas_cash_rate * @gas / 100) +
                               (card.gas_points_multi * @gas / 100) -
                               (card.annual_fee / (6-@countnil))
+
+          @dininghash[card.name] = (card.dining_cash_rate * @dining / 100) +
+                                    (card.dining_point_multi * @dining / 100) -
+                                    (card.annual_fee / (6-@countnil))
+          @hotelhash[card.name] = (card.hotel_cash_rate * @hotel / 100) +
+                                    (card.hotel_points_multi * @hotel /100) -
+                                    (card.annual_fee / (6-@countnil))
+          @airfarehash[card.name] = (card.airfare_cash_rate * @airfare / 100) +
+                                    (card.airfare_points_multi * @airfare / 100) -
+                                    (card.annual_fee / (6-@countnil))
+          @otherhash[card.name] = (card.other_cash_rate * @other / 100) +
+                                    (card.other_points_multi * @other / 100) -
+                                    (card.annual_fee / (6-@countnil))
        end
 
         @topgrocery = @groceryhash.max_by{|k,v| v}[0]
         @topgas = @gashash.max_by{|k,v| v}[0]
+        @topdining = @dininghash.max_by{|k,v| v}[0]
+        @tophotel = @hotelhash.max_by{|k,v| v}[0]
+        @topairfare = @airfarehash.max_by{|k,v| v}[0]
+        @topother = @otherhash.max_by{|k,v| v}[0]
   end
 end
 
