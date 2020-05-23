@@ -2,7 +2,7 @@ class RecommendationsController < ApplicationController
 
   def reco
       @cards = Card.all
-      if Transaction.any? == false
+      if current_user.transactions.any? == false
         @countnil = 0
         @grocery = 0
         @gas = 0
@@ -19,14 +19,14 @@ class RecommendationsController < ApplicationController
         @topother = "None Yet"
         @topforall = "None Yet"
       else
-        @trans = Transaction.all
-        @countnil = Transaction.last.attributes.values.select(&:nil?).count - 2
-        @grocery = (Transaction.last.grocery).to_f
-        @gas = (Transaction.last.gas).to_f
-        @dining = (Transaction.last.dining).to_f
-        @airfare = (Transaction.last.airline).to_f
-        @hotel = (Transaction.last.hotel).to_f
-        @other = (Transaction.last.other).to_f
+        @trans = current_user.transactions
+        @countnil = @trans.last.attributes.values.select(&:nil?).count - 2
+        @grocery = (@trans.last.grocery).to_f
+        @gas = (@trans.last.gas).to_f
+        @dining = (@trans.last.dining).to_f
+        @airfare = (@trans.last.airline).to_f
+        @hotel = (@trans.last.hotel).to_f
+        @other = (@trans.last.other).to_f
         @total = (@grocery + @gas + @dining + @airfare + @hotel + @other).to_f
 
         @groceryhash = Hash.new
