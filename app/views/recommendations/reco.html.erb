@@ -85,20 +85,56 @@
       <% else %>
       <td><%= number_to_currency(card.sign_up_bonus_cash) %></td>
       <% end %>
+      <% if @grocery > 0 %>
+      <td><%= number_to_currency((card.grocery_cash_rate * @grocery / 100) +
+                                (card.grocery_points_multi * @grocery / 100) -
+                                (card.annual_fee / (6-@countnil))) %></td>
+      <% else %>
       <td><%= number_to_currency((card.grocery_cash_rate * @grocery / 100) +
                                 (card.grocery_points_multi * @grocery / 100)) %></td>
+      <% end %>
+      <% if @gas > 0 %>
+      <td><%= number_to_currency((card.gas_cash_rate * @gas / 100) +
+                                (card.gas_points_multi * @gas / 100)-
+                                (card.annual_fee / (6-@countnil))) %></td>
+      <% else %>
       <td><%= number_to_currency((card.gas_cash_rate * @gas / 100) +
                                 (card.gas_points_multi * @gas / 100)) %></td>
+      <% end %>
+      <% if @dining > 0 %>
+      <td><%= number_to_currency((card.dining_cash_rate * @dining / 100) +
+                                (card.dining_point_multi * @dining / 100)-
+                                (card.annual_fee / (6-@countnil))) %></td>
+      <% else %>
       <td><%= number_to_currency((card.dining_cash_rate * @dining / 100) +
                                 (card.dining_point_multi * @dining / 100)) %></td>
+      <% end %>
+      <% if @hotel > 0 %>
+      <td><%= number_to_currency((card.hotel_cash_rate * @hotel / 100) +
+                                (card.hotel_points_multi * @hotel /100)-
+                                (card.annual_fee / (6-@countnil))) %></td>
+      <% else %>
       <td><%= number_to_currency((card.hotel_cash_rate * @hotel / 100) +
                                 (card.hotel_points_multi * @hotel /100)) %></td>
+      <% end %>
+      <% if @airfare > 0 %>
       <td><%= number_to_currency((card.airfare_cash_rate * @airfare / 100) +
-                                (card.airfare_points_multi * @airfare / 100)) %></td>
+                                (card.airfare_points_multi * @airfare / 100)-
+                                (card.annual_fee / (6-@countnil))) %></td>
+<% else %>
+<td><%= number_to_currency((card.airfare_cash_rate * @airfare / 100) +
+                          (card.airfare_points_multi * @airfare / 100)) %></td>
+      <% end %>
+      <% if @other > 0 %>
       <td><%= number_to_currency((card.other_cash_rate * @other / 100) +
-                                (card.other_points_multi * @other / 100))%></td>
+                                (card.other_points_multi * @other / 100)-
+                                (card.annual_fee / (6-@countnil)))%></td>
+                                <% else %>
+                                <td><%= number_to_currency((card.other_cash_rate * @other / 100) +
+                                                          (card.other_points_multi * @other / 100))%></td>
+                                      <% end %>
 
-                              <% if @total > card.signup_bonus_spend_required %>
+            <% if @total > card.signup_bonus_spend_required %>
                               <td><%= number_to_currency((card.grocery_cash_rate * @grocery / 100) +
                                       (card.gas_cash_rate * @gas / 100) +
                                       (card.dining_cash_rate * @dining / 100) +
