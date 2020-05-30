@@ -10,7 +10,7 @@ class RecommendationsController < ApplicationController
         @hotel = 200
         @other = 1000
         @total = 3350
-        @countnil = 0
+        @countnil = 6
 else
 
   @grocery = session[:grocery].to_f
