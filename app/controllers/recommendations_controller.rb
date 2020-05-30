@@ -24,7 +24,7 @@ else
   @allvalues = [@grocery, @gas, @dining, @airfare, @hotel, @other].tally
   @countnil = @allvalues[0].to_f
   if @countnil == 0
-    @countnil = 1
+    @countnil = 6
   end
 
         @groceryhash = Hash.new
