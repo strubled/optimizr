@@ -54,7 +54,7 @@
 <p>The Best Other: <%= @topother %> </p>
 
 </div>
-<% if Transaction.any? %>
+
   <h3>Value for All Cards</h3>
 
   <table class="table table-hover">
@@ -88,7 +88,7 @@
       <% if @grocery > 0 %>
       <td><%= number_to_currency((card.grocery_cash_rate * @grocery / 100) +
                                 (card.grocery_points_multi * @grocery / 100) -
-                                (card.annual_fee / (6-@countnil))) %></td>
+                                (card.annual_fee / (@countnil))) %></td>
       <% else %>
       <td><%= number_to_currency((card.grocery_cash_rate * @grocery / 100) +
                                 (card.grocery_points_multi * @grocery / 100)) %></td>
@@ -96,7 +96,7 @@
       <% if @gas > 0 %>
       <td><%= number_to_currency((card.gas_cash_rate * @gas / 100) +
                                 (card.gas_points_multi * @gas / 100)-
-                                (card.annual_fee / (6-@countnil))) %></td>
+                                (card.annual_fee / (@countnil))) %></td>
       <% else %>
       <td><%= number_to_currency((card.gas_cash_rate * @gas / 100) +
                                 (card.gas_points_multi * @gas / 100)) %></td>
@@ -104,7 +104,7 @@
       <% if @dining > 0 %>
       <td><%= number_to_currency((card.dining_cash_rate * @dining / 100) +
                                 (card.dining_point_multi * @dining / 100)-
-                                (card.annual_fee / (6-@countnil))) %></td>
+                                (card.annual_fee / (@countnil))) %></td>
       <% else %>
       <td><%= number_to_currency((card.dining_cash_rate * @dining / 100) +
                                 (card.dining_point_multi * @dining / 100)) %></td>
@@ -112,7 +112,7 @@
       <% if @hotel > 0 %>
       <td><%= number_to_currency((card.hotel_cash_rate * @hotel / 100) +
                                 (card.hotel_points_multi * @hotel /100)-
-                                (card.annual_fee / (6-@countnil))) %></td>
+                                (card.annual_fee / (@countnil))) %></td>
       <% else %>
       <td><%= number_to_currency((card.hotel_cash_rate * @hotel / 100) +
                                 (card.hotel_points_multi * @hotel /100)) %></td>
@@ -120,7 +120,7 @@
       <% if @airfare > 0 %>
       <td><%= number_to_currency((card.airfare_cash_rate * @airfare / 100) +
                                 (card.airfare_points_multi * @airfare / 100)-
-                                (card.annual_fee / (6-@countnil))) %></td>
+                                (card.annual_fee / (@countnil))) %></td>
 <% else %>
 <td><%= number_to_currency((card.airfare_cash_rate * @airfare / 100) +
                           (card.airfare_points_multi * @airfare / 100)) %></td>
@@ -128,7 +128,7 @@
       <% if @other > 0 %>
       <td><%= number_to_currency((card.other_cash_rate * @other / 100) +
                                 (card.other_points_multi * @other / 100)-
-                                (card.annual_fee / (6-@countnil)))%></td>
+                                (card.annual_fee / (@countnil)))%></td>
                                 <% else %>
                                 <td><%= number_to_currency((card.other_cash_rate * @other / 100) +
                                                           (card.other_points_multi * @other / 100))%></td>
@@ -170,4 +170,3 @@
                           <% end %>
                 </tbody>
               </table>
-              <% end %>

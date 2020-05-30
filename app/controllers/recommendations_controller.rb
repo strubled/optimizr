@@ -2,32 +2,29 @@ class RecommendationsController < ApplicationController
 
   def reco
       @cards = Card.all
-      if current_user.transactions.any? == false
-        @countnil = 0
-        @grocery = 0
-        @gas = 0
-        @dining = 0
-        @airfare = 0
-        @hotel = 0
-        @other = 0
-        @total = 0
-        @topgrocery = "None Yet"
-        @topgas = "None Yet"
-        @topdining = "None Yet"
-        @topairfare = "None Yet"
-        @tophotel = "None Yet"
-        @topother = "None Yet"
-        @topforall = "None Yet"
-      else
-        @trans = current_user.transactions
-        @countnil = @trans.last.attributes.values.select(&:nil?).count - 2
-        @grocery = (@trans.last.grocery).to_f
-        @gas = (@trans.last.gas).to_f
-        @dining = (@trans.last.dining).to_f
-        @airfare = (@trans.last.airline).to_f
-        @hotel = (@trans.last.hotel).to_f
-        @other = (@trans.last.other).to_f
-        @total = (@grocery + @gas + @dining + @airfare + @hotel + @other).to_f
+      if session[:grocery] == nil
+  @grocery = 1500
+  @gas = 50
+  @dining = 200
+  @airfare = 400
+  @hotel = 200
+  @other = 1000
+  @total = 3350
+else
+
+  @grocery = session[:grocery].to_f
+  @gas = session[:gas].to_f
+  @dining = session[:dining].to_f
+  @airfare = session[:airline].to_f
+  @hotel = session[:hotel].to_f
+  @other = session[:other].to_f
+  @total = (@grocery + @gas + @dining + @airfare + @hotel + @other).to_f
+
+  @allvalues = [@grocery, @gas, @dining, @airfare, @hotel, @other].tally
+  @countnil = @allvalues[0].to_f
+  if @countnil == 0
+    @countnil = 1
+  end
 
         @groceryhash = Hash.new
         @gashash = Hash.new
@@ -38,24 +35,24 @@ class RecommendationsController < ApplicationController
         @cards.each do |card|
           @groceryhash[card.name] = (card.grocery_cash_rate * @grocery / 100) +
                                   (card.grocery_points_multi * @grocery / 100) -
-                                  (card.annual_fee / (6-@countnil))
+                                  (card.annual_fee / @countnil)
 
           @gashash[card.name] = (card.gas_cash_rate * @gas / 100) +
                               (card.gas_points_multi * @gas / 100) -
-                              (card.annual_fee / (6-@countnil))
+                              (card.annual_fee / @countnil)
 
           @dininghash[card.name] = (card.dining_cash_rate * @dining / 100) +
                                     (card.dining_point_multi * @dining / 100) -
-                                    (card.annual_fee / (6-@countnil))
+                                    (card.annual_fee / @countnil)
           @hotelhash[card.name] = (card.hotel_cash_rate * @hotel / 100) +
                                     (card.hotel_points_multi * @hotel /100) -
-                                    (card.annual_fee / (6-@countnil))
+                                    (card.annual_fee / @countnil)
           @airfarehash[card.name] = (card.airfare_cash_rate * @airfare / 100) +
                                     (card.airfare_points_multi * @airfare / 100) -
-                                    (card.annual_fee / (6-@countnil))
+                                    (card.annual_fee / @countnil)
           @otherhash[card.name] = (card.other_cash_rate * @other / 100) +
                                     (card.other_points_multi * @other / 100) -
-                                    (card.annual_fee / (6-@countnil))
+                                    (card.annual_fee / @countnil)
        end
 
         @topgrocery = @groceryhash.max_by{|k,v| v}[0]
@@ -69,8 +66,21 @@ end
 
   def create
 
-    @spend = current_user.transactions.build(spend_params)
-    @spend.save
+  session[:grocery] = spend_params[:grocery]
+  session[:gas] = spend_params[:gas]
+  session[:dining] = spend_params[:dining]
+  session[:airline] = spend_params[:airline]
+  session[:hotel] = spend_params[:hotel]
+  session[:other] = spend_params[:other]
+
+  @spend = spend_params
+  @grocery = spend_params[:grocery]
+  @gas = spend_params[:gas]
+  @dining = spend_params[:dining]
+  @airfare = spend_params[:airline]
+  @hotel = spend_params[:hotel]
+  @other = spend_params[:other]
+  @total = @grocery + @gas + @dining + @airfare + @hotel + @other
     redirect_to(recommendations_path(spend: @spend))
 
   end

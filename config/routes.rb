@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'users/new'
   get 'cards/edit'
-  root 'static_pages#home'
+  root 'recommendations#reco'
   get  '/help',    to: 'static_pages#help'
   get  '/cards',    to: 'cards#show'
   get '/addcard',       to: 'cards#new'
