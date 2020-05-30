@@ -3,13 +3,14 @@ class RecommendationsController < ApplicationController
   def reco
       @cards = Card.all
       if session[:grocery] == nil
-  @grocery = 1500
-  @gas = 50
-  @dining = 200
-  @airfare = 400
-  @hotel = 200
-  @other = 1000
-  @total = 3350
+        @grocery = 1500
+        @gas = 50
+        @dining = 200
+        @airfare = 400
+        @hotel = 200
+        @other = 1000
+        @total = 3350
+        @countnil = 0
 else
 
   @grocery = session[:grocery].to_f
