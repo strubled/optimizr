@@ -10,7 +10,7 @@ class RecommendationsController < ApplicationController
         @hotel = 200
         @other = 1000
         @total = 3350
-        @countnil = 6
+        @countnil = 1
 else
 
   @grocery = session[:grocery].to_f
@@ -22,9 +22,9 @@ else
   @total = (@grocery + @gas + @dining + @airfare + @hotel + @other).to_f
 
   @allvalues = [@grocery, @gas, @dining, @airfare, @hotel, @other].tally
-  @countnil = @allvalues[0].to_f
+  @countnil = 6 - @allvalues[0].to_f
   if @countnil == 0
-    @countnil = 6
+    @countnil = 1
   end
 
         @groceryhash = Hash.new
