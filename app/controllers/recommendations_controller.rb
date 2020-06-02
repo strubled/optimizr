@@ -11,21 +11,47 @@ class RecommendationsController < ApplicationController
         @other = 1000
         @total = 3350
         @countnil = 1
-else
+      else
+        if session[:grocery] == nil
+          @grocery = 0
+        else
+          @grocery = session[:grocery].to_f
+        end
+        if session[:gas] == nil
+          @gas = 0
+        else
+          @gas = session[:gas].to_f
+        end
+        if session[:dining] == nil
+          @dining = 0
+        else
+          @dining = session[:dining].to_f
+        end
+        if session[:airline] == nil
+          @airfare = 0
+        else
+          @airfare = session[:airline].to_f
+        end
+        if session[:hotel] == nil
+          @hotel = 0
+        else
+          @hotel = session[:hotel].to_f
+        end
+        if session[:other] == nil
+          @other = 0
+        else
+          @other = session[:other].to_f
+        end
+        @total = (@grocery + @gas + @dining + @airfare + @hotel + @other).to_f
 
-  @grocery = session[:grocery].to_f
-  @gas = session[:gas].to_f
-  @dining = session[:dining].to_f
-  @airfare = session[:airline].to_f
-  @hotel = session[:hotel].to_f
-  @other = session[:other].to_f
-  @total = (@grocery + @gas + @dining + @airfare + @hotel + @other).to_f
+        @allvalues = [@grocery, @gas, @dining, @airfare, @hotel, @other]
 
-  @allvalues = [@grocery, @gas, @dining, @airfare, @hotel, @other].tally
-  @countnil = 6 - @allvalues[0].to_f
-  if @countnil == 0
-    @countnil = 1
-  end
+
+        @countnil = 6 - @allvalues.count(0).to_f
+
+        if @countnil == 0
+          @countnil = 1
+        end
 
         @groceryhash = Hash.new
         @gashash = Hash.new
