@@ -1,3 +1,5 @@
 # Optimizr
+https://secret-chamber-70961.herokuapp.com/recommendations
 
-Eventually this will be a home page / status for where the project is at.  Right now, we're not really anywhere.  
+current status:
+* stuck on the annual fee dilemma
